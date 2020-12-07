@@ -85,6 +85,11 @@ const promptIntern = () => {
       name: "school",
       message: "What is the intern's school?",
     },
+    {
+      type: "confirm",
+      name: "another",
+      message: "Would you like another intern?",
+    },
   ]);
 };
 
@@ -112,16 +117,19 @@ const init = async () => {
       )
     );
   } while (addAnotherEmployee);
+  do {
+    const internAnswers = await promptIntern();
+    addAnotherEmployee = internAnswers.another;
 
-  const internAnswers = await promptIntern();
-  employees.push(
-    new Intern(
-      internAnswers.name,
-      internAnswers.id,
-      internAnswers.email,
-      internAnswers.school
-    )
-  );
+    employees.push(
+      new Intern(
+        internAnswers.name,
+        internAnswers.id,
+        internAnswers.email,
+        internAnswers.school
+      )
+    );
+  } while (addAnotherEmployee);
 
   const html = render(employees);
 
