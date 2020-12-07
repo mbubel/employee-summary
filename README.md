@@ -17,7 +17,7 @@ This project will automatically generate a team consisting of one manager, at le
 You can use this project to conveniently create a team.
 
  # CONTRIBUTION:
-Fork the repo and put in a pull request
+Fork the repo and put in a pull request.
 
 # TEST:
 Attached is a link for a video tutorial.
