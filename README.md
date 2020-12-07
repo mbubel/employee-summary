@@ -1,5 +1,5 @@
 # TITLE:
-Emoployee Summary
+Employee Summary
 
 # DESCRIPTION:
 This project will automatically generate a team consisting of one manager, at least one engineer, and at least one intern.
