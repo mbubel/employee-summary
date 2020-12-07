@@ -56,6 +56,11 @@ const promptEngineer = () => {
       name: "github",
       message: "What is the engineer's GitHub Username?",
     },
+    {
+      type: "confirm",
+      name: "another",
+      message: "Would you like another engineer?",
+    },
   ]);
 };
 const promptIntern = () => {
@@ -84,30 +89,41 @@ const promptIntern = () => {
 };
 
 const init = async () => {
+  let employees = [];
   const managerAnswers = await promptManager();
-  const manager = new Manager(
-    managerAnswers.name,
-    managerAnswers.id,
-    managerAnswers.email,
-    managerAnswers.officeNumber
+  employees.push(
+    new Manager(
+      managerAnswers.name,
+      managerAnswers.id,
+      managerAnswers.email,
+      managerAnswers.officeNumber
+    )
   );
-  const engineerAnswers = await promptEngineer();
-  const engineer = new Engineer(
-    engineerAnswers.name,
-    engineerAnswers.id,
-    engineerAnswers.email,
-    engineerAnswers.github
-  );
+  let addAnotherEmployee = false;
+  do {
+    const engineerAnswers = await promptEngineer();
+    addAnotherEmployee = engineerAnswers.another;
+    employees.push(
+      new Engineer(
+        engineerAnswers.name,
+        engineerAnswers.id,
+        engineerAnswers.email,
+        engineerAnswers.github
+      )
+    );
+  } while (addAnotherEmployee);
 
   const internAnswers = await promptIntern();
-  const intern = new Intern(
-    internAnswers.name,
-    internAnswers.id,
-    internAnswers.email,
-    internAnswers.school
+  employees.push(
+    new Intern(
+      internAnswers.name,
+      internAnswers.id,
+      internAnswers.email,
+      internAnswers.school
+    )
   );
 
-  const html = render([manager, engineer, intern]);
+  const html = render(employees);
 
   fs.writeFileSync(outputPath, html);
 };
