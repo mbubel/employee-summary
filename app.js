@@ -34,6 +34,55 @@ const promptManager = () => {
     },
   ]);
 };
+const promptEngineer = () => {
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "name",
+      message: "What is the engineer's name?",
+    },
+    {
+      type: "input",
+      name: "id",
+      message: "What is the engineer's ID?",
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is the engineer's email?",
+    },
+    {
+      type: "input",
+      name: "github",
+      message: "What is the engineer's GitHub Username?",
+    },
+  ]);
+};
+const promptIntern = () => {
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "name",
+      message: "What is the intern's name?",
+    },
+    {
+      type: "input",
+      name: "id",
+      message: "What is the intern's ID?",
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is the intern's email?",
+    },
+    {
+      type: "input",
+      name: "school",
+      message: "What is the intern's school?",
+    },
+  ]);
+};
+
 const init = async () => {
   const managerAnswers = await promptManager();
   const manager = new Manager(
@@ -42,8 +91,23 @@ const init = async () => {
     managerAnswers.email,
     managerAnswers.officeNumber
   );
+  const engineerAnswers = await promptEngineer();
+  const engineer = new Engineer(
+    engineerAnswers.name,
+    engineerAnswers.id,
+    engineerAnswers.email,
+    engineerAnswers.github
+  );
 
-  const html = render([manager]);
+  const internAnswers = await promptIntern();
+  const intern = new Intern(
+    internAnswers.name,
+    internAnswers.id,
+    internAnswers.email,
+    internAnswers.school
+  );
+
+  const html = render([manager, engineer, intern]);
 
   fs.writeFileSync(outputPath, html);
 };
