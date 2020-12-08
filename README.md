@@ -20,7 +20,7 @@ You can use this project to conveniently create a team.
 Fork the repo and put in a pull request.
 
 # TEST:
-![Team Screenshot](/assets/My-Team.png?raw=true "My Team")
+![Team Screenshot](/assets/Team.png?raw=true "My Team")
 
 Attached is a link for a video tutorial.
 https://www.awesomescreenshot.com/video/1986599?key=d01ffc9e86ab2508a4ba1bf38b513985
